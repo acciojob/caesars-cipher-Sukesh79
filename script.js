@@ -34,17 +34,23 @@ function isLetter(str){
 	if(str.length === 1 && str.match(/[A-Z]/i)) return true;
 	return false;
 }
-function rot13(encodedStr) {
-  let decodedArr = ""; // Your Result goes here
-  // Only change code below this line
-		for(let i = 0; i < encodedStr.length; i++){
-			if(isLetter(encodedStr[i]))
-				decodedArr += lookup.encodedStr[i]);
-			else decodedArr += encodedStr[i]);
-		}
+function rot13(encodedString) {
+  var decodedString = "";
 
-	
-  return decodedArr;//return decodedArr
+  for (var i = 0; i < encodedString.length; i++) {
+    var charCode = encodedString.charCodeAt(i);
+
+    if (charCode >= 65 && charCode <= 90) {
+      // If it's an uppercase letter (A-Z)
+      var decodedCharCode = ((charCode - 65 + 13) % 26) + 65;
+      decodedString += String.fromCharCode(decodedCharCode);
+    } else {
+      // Non-alphabetic characters
+      decodedString += encodedString.charAt(i);
+    }
+  }
+
+  return decodedString;
 }
 
 
